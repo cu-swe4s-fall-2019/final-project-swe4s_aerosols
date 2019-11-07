@@ -1,0 +1,3 @@
+[submodule "aeroDADA2"]
+	path = aeroDADA2
+	url = https://github.com/tacaro/aeroDADA2.git
