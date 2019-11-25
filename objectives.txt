@@ -6,15 +6,17 @@
 
 
 2. Create a module that removes contaminants from flight samples ()
-	A. If the abundance of a negative control ASV is greater than a flight sample ASV, remove it from the flight sample. 
+	A. If the abundance of a negative control ASV is greater than a flight sample ASV, remove it from the flight sample.
 
 
-3. Diversity metrics of ASVs based on sampling altitude, location, flight or ground ()
+3. Diversity metrics of ASVs based on sampling altitude, location, flight or ground (Ellen)
 	A. create modules for alpha/beta diversity, NMDS, PCOA
 
 4. Create matplotlib module for plotting diversity metrics ()
 
-5. Create a script that integrates all modules ():
+5. BacDive integration ()
+
+6. Create a script that integrates all modules ():
 	A. Takes in an ASV table, tax_table, and metadata
 	B. Removes contaminants
 	C. Computes diversity metrics
