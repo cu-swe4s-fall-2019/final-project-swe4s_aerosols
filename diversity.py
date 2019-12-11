@@ -17,46 +17,37 @@ import csv
 import argparse
 import pandas as pd
 import numpy as np
-
-def betaDivtest1(file):
-# extract total number of spp observed across all sites
-   with open(file) as csvfile:
-        reader = csv.DictReader(csvfile)
-        #pull out spp names
-        spp_names = None
-        data = []
-        communities = []
-        number_spp_present = []
-        for row in reader:
-            if spp_names is None:
-                spp_names = row
-            else:
-                communities.append(row.split()[0])
-                spp_counts = row.split()[1:] #grab spp counts
-                number_spp_present.append(length(spp_counts> 0))
-        print(number_spp_present)
-
-    #filename = file
+import matplotlib.pyplot as plt
 
 
 def betaDiv(file):
-    df = pd.read_csv(file, index_col = 0) #assumes first column is comm names
+    df = pd.read_csv(file, index_col=0)  # assumes first column is comm names
     num_spp = int(len(df.columns))
+    num_comms = int(len(df.index))
     counts = []
-    for comm in range(num_spp):
-        #print(comm)
-        count = list(df.iloc[comm,:]>0).count(True)
+    for comm in range(num_comms):
+        # print(comm)
+        count = list(df.iloc[comm, :]>0).count(True)
         counts.append(count/num_spp)
-    #print(counts)
-    #bdiv = np.array(counts)/num_spp
+    # print(counts)
+    # bdiv = np.array(counts)/num_spp
+    # print(counts)
+    # print('len', len(counts))
+
     print(counts)
-    #for row in df.iterrows():
-    #beta = beta_diversity('observed beta', df, ids = list(df.index))
+    # make a plot of beta div vs comm
+    y_pos = np.arange(len(df.index))
+    vals = np.array(counts)
+    # print(y_pos)
+    # print(vals)
+    plt.bar(y_pos, vals, align = 'center')
+    plt.xlabel('Community')
+    plt.ylabel('Beta diversity')
+    plt.title('Beta diversity score by community')
+    plt.savefig('beta_diversity.png')
 
 
-    #make a plot of beta div vs comm
 
-    
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(description = 'right way', prog = 'good way')
@@ -72,4 +63,4 @@ if __name__ == '__main__':
     if args.diversitymeasure == 'beta':
         betaDiv(str(args.file_name))
 
-#python diversity.py --file_name test_community_dataset.csv --diversitymeasure beta
+# python diversity.py --file_name asv_table_corrected.csv --diversitymeasure beta
