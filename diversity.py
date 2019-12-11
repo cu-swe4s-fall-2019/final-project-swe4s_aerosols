@@ -46,7 +46,7 @@ def betaDiv(file):
     plt.title('Beta diversity score by community')
     plt.savefig('beta_diversity.png')
 
-
+    return counts
 
 if __name__ == '__main__':
     import argparse
